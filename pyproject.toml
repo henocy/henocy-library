@@ -3,8 +3,8 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "henocy-library"
-version = "1.0.9"
+name = "henocy"
+version = "1.0.8" # Joriy push qilayotgan versiyangga moslashtirildi
 authors = [
     { name="Ace Create", email="salomjaga@gmail.com" },
 ]
@@ -23,3 +23,4 @@ dependencies = [
 
 [tool.setuptools.packages.find]
 where = ["."]
+include = ["henocy", "henocy.*"] # Faqat asosiy kodni paketga yig'adi, keraksiz .github yoki test fayllar kirmaydi
