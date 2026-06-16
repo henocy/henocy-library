@@ -3,19 +3,24 @@ name: PyPI-ga avtomatik yuklash
 on:
   push:
     tags:
-      - 'v*' # Faqat v1.0.0, v1.0.1 kabi versiya teglari push qilinganda ishlaydi
+      - 'v*'
 
 jobs:
   build-n-publish:
     name: Paketni yig'ish va PyPI-ga jo'natish
     runs-on: ubuntu-latest
+    
+    # OIDC uchun ruxsatnomalar:
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
     - name: Kodni yuklab olish
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4 # Oxirgi versiyaga yangilandi
 
     - name: Python muhitini sozlash
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5 # Oxirgi versiyaga yangilandi
       with:
         python-version: "3.10"
 
@@ -28,6 +33,5 @@ jobs:
       run: python -m build
 
     - name: PyPI-ga xavfsiz yuklash
-      uses: pypa/github-action-pypi-publish@release/v1
-      with:
-        password: ${{ secrets.PYPI_API_TOKEN }}
+      uses: pypa/github-action-pypi-publish@release/v1 # To'g'rilangan variant
+      # password kerak emas! PyPI buni GitHub orqali avtomatik tekshiradi.
